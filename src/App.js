@@ -1,24 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles';
+import SimpleSelect from './Components/SimpleSelect';
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark', // Switching the dark mode on is a single property value change.
+  },
+});
+
+const contentStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+  },
+  content: {
+    flexGrow: 1,
+    paddingTop: '60px',
+  },
+}));
+
+
 
 function App() {
+
+  const classes = contentStyles();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        <div className={classes.root} >
+          <SimpleSelect />
+          {/* <CssBaseline /> */}
+        </div>
+      </ThemeProvider>
     </div>
   );
 }
